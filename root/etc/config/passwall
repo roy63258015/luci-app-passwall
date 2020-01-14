@@ -30,7 +30,7 @@ config global_proxy
 	option socks5_proxy_port '1061'
 	option kcptun_port '11183'
 	option proxy_ipv6 '0'
-
+	
 config global_other
 	option use_tcping '1'
 	option auto_ping '1'
@@ -38,6 +38,8 @@ config global_other
 	option udp_node_num '1'
 	option socks5_node_num '1'
 	option status_use_big_icon '1'
+	option status_show_check_port '0'
+	option status_show_ip111 '0'
 	option compact_display_nodes '0'
 	option show_group '0'
 	option show_add_mode '0'
@@ -48,7 +50,7 @@ config global_rules
 	option chnlist_update '1'
 	option gfwlist_version '2019-12-10'
 	option chnroute_version '2019-12-05'
-	option chnlist_version '2020-01-04'
+	option chnlist_version '2020-01-06'
 	option auto_update '1'
 	option week_update '7'
 	option time_update '5'
@@ -65,6 +67,5 @@ config global_subscribe
 	option time_update_subscribe '5'
 
 config auto_switch
-	option testing_time '50'
+	option testing_time '3'
 	option enable '0'
-
