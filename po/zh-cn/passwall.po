@@ -1,5 +1,5 @@
 msgid "Pass Wall"
-msgstr "正确上网姿势 √"
+msgstr "科学上网"
 
 msgid "Shadowsocks Server"
 msgstr "ShadowSocks 服务器"
