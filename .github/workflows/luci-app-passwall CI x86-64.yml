@@ -3,9 +3,9 @@ on:
   #release:
   #  types: [published]
   
-  push:
-    branches: 
-      - master
+  #push:
+  #  branches: 
+  #    - master
 
       
 jobs:
@@ -16,19 +16,19 @@ jobs:
       URL: https://downloads.openwrt.org/snapshots/targets/x86/64/openwrt-sdk-x86-64_gcc-8.3.0_musl.Linux-x86_64.tar.xz
     
     steps:
-    - name: Checkout - clone repository
+    - name: 检查 - 克隆储存库
       uses: actions/checkout@v1
     
-    - name: Download and untar sdk
+    - name: 下载 and 解压 sdk
       run: |
         wget $URL
         tar xvJf openwrt-sdk-x86-64_gcc-8.3.0_musl.Linux-x86_64.tar.xz
       
-    - name: Install dependencies
+    - name: 安装依赖
       run: |
         sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion git-core gcc-multilib libelf-dev autoconf automake libtool
         
-    - name: Load custom configuration
+    - name: 加载自定义配置
       env:
         CONFIG_FILE: '.config'
       run: |
@@ -36,15 +36,15 @@ jobs:
         cd openwrt-sdk-x86-64_gcc-8.3.0_musl.Linux-x86_64
         make defconfig        
         
-    - name: Clone package
+    - name: 克隆组件
       run: |
         cd openwrt-sdk-x86-64_gcc-8.3.0_musl.Linux-x86_64/package/
         git clone -b master https://github.com/hong0980/luci-app-passwall.git
-    - name: Build ipk
+    - name: 构建 ipk
       run: |
         cd openwrt-sdk-x86-64_gcc-8.3.0_musl.Linux-x86_64
         make package/luci-app-passwall/compile V=99
-    - name: Upload - push to artifact file
+    - name: 上传 - push to artifact file
       uses: actions/upload-artifact@v1
       with:
         name: luci-app-passwall
