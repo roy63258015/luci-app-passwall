@@ -1,7 +1,7 @@
 name: luci-app-passwall CI x86-64
 on:
-  release:
-    types: [published]
+  #release:
+  #  types: [published]
   
   push:
     branches: 
