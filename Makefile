@@ -7,10 +7,9 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=luci-app-passwall
 PKG_VERSION:=3.3
-PKG_RELEASE:=26-20200115
+PKG_RELEASE:=40-20200201
 
 PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
-PO2LMO:=./po2lmo
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -19,7 +18,7 @@ menu "Configuration"
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_ipt2socks
 	bool "Include ipt2socks"
-	default n
+	default y
 	
 config PACKAGE_$(PKG_NAME)_INCLUDE_Shadowsocks
 	bool "Include Shadowsocks Redir (ss-redir)"
@@ -55,7 +54,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_kcptun
 
 config PACKAGE_$(PKG_NAME)_INCLUDE_haproxy
 	bool "Include haproxy"
-	default n
+	default y
 	
 config PACKAGE_$(PKG_NAME)_INCLUDE_ChinaDNS_NG
 	bool "Include ChinaDNS-NG"
@@ -67,7 +66,7 @@ config PACKAGE_$(PKG_NAME)_INCLUDE_pdnsd
 	
 config PACKAGE_$(PKG_NAME)_INCLUDE_dns2socks
 	bool "Include dns2socks"
-	default n
+	default y
 
 endmenu
 endef
@@ -86,6 +85,7 @@ define Package/$(PKG_NAME)
   +PACKAGE_$(PKG_NAME)_INCLUDE_ShadowsocksR_socks:shadowsocksr-libev-ssr-local \
   +PACKAGE_$(PKG_NAME)_INCLUDE_V2ray:v2ray \
   +PACKAGE_$(PKG_NAME)_INCLUDE_Trojan:trojan \
+  +PACKAGE_$(PKG_NAME)_INCLUDE_Trojan:ipt2socks \
   +PACKAGE_$(PKG_NAME)_INCLUDE_Brook:brook \
   +PACKAGE_$(PKG_NAME)_INCLUDE_kcptun:kcptun-client \
   +PACKAGE_$(PKG_NAME)_INCLUDE_haproxy:haproxy \
@@ -124,8 +124,7 @@ define Package/$(PKG_NAME)/install
 	cp -pR ./luasrc/* $(1)/usr/lib/lua/luci/
 	
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
-	chmod 755 $(PO2LMO)
-	$(PO2LMO) ./po/zh-cn/passwall.po $(1)/usr/lib/lua/luci/i18n/passwall.zh-cn.lmo
+	po2lmo ./po/zh-cn/passwall.po $(1)/usr/lib/lua/luci/i18n/passwall.zh-cn.lmo
 endef
 
 define Package/$(PKG_NAME)/postinst
