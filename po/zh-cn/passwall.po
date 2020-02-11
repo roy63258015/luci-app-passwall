@@ -1,5 +1,5 @@
 msgid "Pass Wall"
-msgstr "Pass Wall"
+msgstr "正确上网姿势 √"
 
 msgid "Auto"
 msgstr "自动"
