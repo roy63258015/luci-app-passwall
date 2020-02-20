@@ -39,7 +39,7 @@ jobs:
     - name: 克隆组件
       run: |
         cd openwrt-sdk-x86-64_gcc-8.3.0_musl.Linux-x86_64/package/
-        git clone -b master https://github.com/roy63258015/luci-app-passwall.git
+        git clone -b master https://github.com/hong0980/luci-app-passwall.git
         
     - name: 构建 ipk
       run: |
