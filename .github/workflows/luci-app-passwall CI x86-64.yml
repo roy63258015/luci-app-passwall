@@ -40,10 +40,12 @@ jobs:
       run: |
         cd openwrt-sdk-x86-64_gcc-8.3.0_musl.Linux-x86_64/package/
         git clone -b master https://github.com/roy63258015/luci-app-passwall.git
+        
     - name: 构建 ipk
       run: |
         cd openwrt-sdk-x86-64_gcc-8.3.0_musl.Linux-x86_64
         make package/luci-app-passwall/compile V=99
+        
     - name: 上传 - push to artifact file
       uses: actions/upload-artifact@v1
       with:
